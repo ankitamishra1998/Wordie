@@ -1,0 +1,15 @@
+.board-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 10px;
+    width: 500px;
+    height: 500px;
+    background-color:tan;
+    border-radius: 2%;
+    margin: 0 auto; /* centers the board horizontally */
+    margin-top: 50px; /* adds some top margin to center vertically */
+    padding: 15px;
+  }
+  
+  
