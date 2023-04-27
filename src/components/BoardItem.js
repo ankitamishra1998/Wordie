@@ -3,11 +3,6 @@ import './BoardItem.css';
 import { BACKGROUND_COLORS } from '../constants';
 
 class  BoardItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { isMarkedBomb: false };
-    }
-
     selectBgColor() {
         let bgColor;
         if (this.props.isClicked && this.props.isBomb) {
@@ -16,7 +11,7 @@ class  BoardItem extends Component {
             bgColor =  BACKGROUND_COLORS.hoverBgColor;
         } else if (this.props.isClicked) {
             bgColor =  BACKGROUND_COLORS.clickedBgColor;
-        } else if (this.state.isMarkedBomb) {
+        } else if (this.props.isMarkedBomb) {
             bgColor =  BACKGROUND_COLORS.markBomb;
         } else {
             bgColor =  BACKGROUND_COLORS.origBgColor;
@@ -26,18 +21,20 @@ class  BoardItem extends Component {
     }
 
     handleBoardItemClick = () => {
-        if (this.state.isMarkedBomb) {
-            this.setState({ isMarkedBomb: false });
+        const { row, col, isMarkedBomb } = this.props;
+        if (isMarkedBomb) {
+            this.props.markAndUnmarkBomb(row, col, false);
         } else {
-            this.setState({ isMarkedBomb: true });
+            this.props.markAndUnmarkBomb(row, col, true);
         }
     }
 
     render() {
+        const { isClicked, isRevealed, isBomb, noOfBombNeighbors } = this.props;
         return (
             <div style={{ backgroundColor: this.selectBgColor() }} className="board-item" onClick={this.handleBoardItemClick}>
-            {this.props.isRevealed && <div className="reveal">{this.props.noOfBombNeighbors}</div>}
-            {this.props.isClicked && this.props.isBomb && <div className="bomb"></div>}
+            {isRevealed && <div className="reveal">{noOfBombNeighbors}</div>}
+            {isClicked && isBomb && <div className="bomb"></div>}
             </div>
         );
     }

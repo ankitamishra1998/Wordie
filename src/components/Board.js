@@ -5,22 +5,22 @@ import Modal from './Modal';
 import { randomWalkAlgorithm } from '../utils';
 
 class Board extends Component {
-    rows;
-    cols;
-    new_x = 0;
-    new_y = 0;
+    rows = 5;
+    cols = 5;
 
     constructor(props) {
         super(props);
-        let newBoard = this.createBoard();
-        this.setBoardValues(newBoard);
-        this.state = { 
-            boardState: newBoard,
+
+        let board = this.createBoard();
+        this.setBoardValues(board);
+        this.state = {
+            boardState: board,
             position: {
-                x: 0, 
+                x: 0,
                 y: 0
             },
-            isFoundBomb: false
+            isFoundBomb: false,
+            isGameWon: false,
         };
     }
 
@@ -33,19 +33,27 @@ class Board extends Component {
     }
 
     rerender = () => {
-        console.log("CHECKPOINT 2");
         this.resetBoard();
         this.forceUpdate();
     }
 
     createBoard = () => {
-        this.rows = 5;
-        this.cols = 5;
-        let myBoard = new Array(this.rows);
-        for (let i = 0; i < this.rows; i++) {
-            myBoard[i] = new Array(this.cols);
-            for (let j = 0; j < this.cols; j++) {
-                myBoard[i][j] = {row: i, col: j, isClicked: false, isRevealed: false, isBomb: true, noOfBombNeighbors: 0};
+        let rows = this.rows;
+        let cols = this.cols;
+
+        let myBoard = new Array(rows);
+        for (let i = 0; i < rows; i++) {
+            myBoard[i] = new Array(cols);
+            for (let j = 0; j < cols; j++) {
+                myBoard[i][j] = { 
+                    row: i, 
+                    col: j, 
+                    isClicked: false, 
+                    isRevealed: false, 
+                    isBomb: true, 
+                    noOfBombNeighbors: 0, 
+                    isMarkedBomb: false 
+                };
             }
         }
 
@@ -62,20 +70,21 @@ class Board extends Component {
     }
 
     setBoard = (board) => {
-        this.setState({ 
+        this.setState({
             boardState: board,
             position: {
-                x: 0, 
+                x: 0,
                 y: 0
             },
-            isFoundBomb: false
+            isFoundBomb: false,
+            isGameWon: false,
         });
     }
 
     resetBoard = () => {
-        let newBoard = this.createBoard();
-        this.setBoardValues(newBoard);
-        this.setBoard(newBoard);
+        let board = this.createBoard();
+        this.setBoardValues(board);
+        this.setBoard(board);
     }
 
     setPath(board) {
@@ -98,105 +107,134 @@ class Board extends Component {
     setBombs(board) {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-              // calculate bomb neighbors
-              let bombNeighbors = 0;
-              if (i > 0 && board[i-1][j].isBomb === true) {
-                  bombNeighbors++;
-              }
-          
-              if (i < 4 && board[i+1][j].isBomb ===true) {
-                  bombNeighbors++;
-              }
-          
-              if (j > 0 && board[i][j-1].isBomb === true) {
-                  bombNeighbors++;
-              }
-          
-              if (j < 4 && board[i][j+1].isBomb === true) {
-                  bombNeighbors++;
-              }
-              board[i][j].noOfBombNeighbors = bombNeighbors;
+                // calculate bomb neighbors
+                let bombNeighbors = 0;
+                if (i > 0 && board[i - 1][j].isBomb === true) {
+                    bombNeighbors++;
+                }
+
+                if (i < 4 && board[i + 1][j].isBomb === true) {
+                    bombNeighbors++;
+                }
+
+                if (j > 0 && board[i][j - 1].isBomb === true) {
+                    bombNeighbors++;
+                }
+
+                if (j < 4 && board[i][j + 1].isBomb === true) {
+                    bombNeighbors++;
+                }
+                board[i][j].noOfBombNeighbors = bombNeighbors;
             }
-          }
+        }
+    }
+
+    markAndUnmarkBomb = (row, col, val) => {
+        let newBoardState = [...this.state.boardState];
+        newBoardState[row][col].isMarkedBomb = val;
+        this.setState({
+            boardState: newBoardState
+        })
     }
 
     handleKeyDown = (event) => {
         let cur_x = this.state.position.x;
         let cur_y = this.state.position.y;
+        let new_x = 0;
+        let new_y = 0;
 
         switch (event.keyCode) {
-          case 37: // left arrow
-            this.new_x = cur_x;
-            this.new_y = cur_y - 1;
-            break;
-          case 38: // up arrow
-            this.new_x = cur_x - 1;
-            this.new_y = cur_y;
-            break;
-          case 39: // right arrow
-            this.new_x = cur_x;
-            this.new_y = cur_y + 1;
-            break;
-          case 40: // down arrow
-            this.new_x = cur_x + 1;
-            this.new_y = cur_y;
-            break;
-          default:
-            break;
+            case 37: // left arrow
+                new_x = cur_x;
+                new_y = cur_y - 1;
+                break;
+            case 38: // up arrow
+                new_x = cur_x - 1;
+                new_y = cur_y;
+                break;
+            case 39: // right arrow
+                new_x = cur_x;
+                new_y = cur_y + 1;
+                break;
+            case 40: // down arrow
+                new_x = cur_x + 1;
+                new_y = cur_y;
+                break;
+            default:
+                break;
         }
 
-        let newBoardState = [...this.state.boardState];
+        if (!this.state.isFoundBomb && !this.state.isGameWon) {
+            let newBoardState = [...this.state.boardState];
 
-        if (this.new_x >= 0 && this.new_x <=4 && this.new_y >= 0 && this.new_y <= 4) {
-            newBoardState[this.new_x][this.new_y].isClicked = true;
-            newBoardState[this.new_x][this.new_y].isRevealed = true;
+            if (new_x >= 0 && new_x <= 4 && new_y >= 0 && new_y <= 4) {
+                newBoardState[new_x][new_y].isClicked = true;
+                newBoardState[new_x][new_y].isRevealed = true;
 
-            if (this.new_x + 1 <= 4 && this.new_y <= 4) {
-                newBoardState[this.new_x + 1][this.new_y].isRevealed = true;
+                if (new_x + 1 <= 4 && new_y <= 4) {
+                    newBoardState[new_x + 1][new_y].isRevealed = true;
+                }
+
+                if (new_x <= 4 && new_y + 1 <= 4) {
+                    newBoardState[new_x][new_y + 1].isRevealed = true;
+                }
+
+                if (new_x - 1 >= 0 && new_y >= 0) {
+                    newBoardState[new_x - 1][new_y].isRevealed = true;
+                }
+
+                if (new_x >= 0 && new_y - 1 >= 0) {
+                    newBoardState[new_x][new_y - 1].isRevealed = true;
+                }
+                
+
+                let isFoundBomb = this.state.isFoundBomb;
+                if (this.state.boardState[new_x][new_y].isBomb) { isFoundBomb = true; }
+
+                let isGameWon = this.state.isGameWon;
+                if (new_x === this.rows-1 && new_y === this.cols-1) { isGameWon = true; }
+
+                this.setState({
+                    boardState: newBoardState,
+                    position: {
+                        x: new_x,
+                        y: new_y
+                    },
+                    isFoundBomb,
+                    isGameWon
+                });
             }
-
-            if (this.new_x <= 4 && this.new_y + 1 <= 4) {
-                newBoardState[this.new_x][this.new_y + 1].isRevealed = true;
-            }
-
-            if (this.new_x === 4) {
-                newBoardState[this.new_x - 1][this.new_y].isRevealed = true;
-            }
-
-            if (this.new_y === 4) {
-                newBoardState[this.new_x][this.new_y - 1].isRevealed = true;
-            }
-
-            let isFoundBomb = this.state.isFoundBomb;
-            if (this.state.boardState[this.new_x][this.new_y].isBomb) { isFoundBomb = true; }
-            
-            this.setState({ 
-                boardState: newBoardState,
-                position: {
-                    x: this.new_x,
-                    y: this.new_y
-                },
-                isFoundBomb
-            });
         }
     };
 
-  render() {
-    return (
-        <div>
-            {this.state.isFoundBomb && <Modal title={"Test title"} content={"test content"} rerender={this.rerender}/>}
-            <div className="board-container" onKeyDown={this.handleKeyDown}>
-                {
-                this.state.boardState.map((row, i) =>
-                    row.map((item, j) =>
-                    <BoardItem key={i * 5 + j} row={i} col={j} isClicked={item.isClicked} isRevealed={item.isRevealed} isBomb={item.isBomb} noOfBombNeighbors={item.noOfBombNeighbors} posX={this.state.position.new_x} posY={this.state.position.new_y}/>
-                    )
-                )}
+    render() {
+        return (
+            <div>
+                {this.state.isFoundBomb && <Modal title={"Game over!"} content={"Try again"} rerender={this.rerender} />}
+                {this.state.isGameWon && <Modal title={"Congratulations, you won!"} content={"Play again"} rerender={this.rerender} />}
+                <div className="board-container" onKeyDown={this.handleKeyDown}>
+                    {
+                        this.state.boardState.map((row, i) =>
+                            row.map((item, j) =>
+                                <BoardItem 
+                                    key={i * 5 + j} 
+                                    row={i} 
+                                    col={j} 
+                                    isClicked={item.isClicked} 
+                                    isRevealed={item.isRevealed} 
+                                    isBomb={item.isBomb} 
+                                    noOfBombNeighbors={item.noOfBombNeighbors} 
+                                    posX={this.state.position.x} 
+                                    posY={this.state.position.y} 
+                                    isMarkedBomb={item.isMarkedBomb}
+                                    markAndUnmarkBomb={this.markAndUnmarkBomb}
+                                />
+                            )
+                        )}
+                </div>
             </div>
-        </div>
-      );
-  }
+        );
+    }
 }
-
 
 export default Board;

@@ -1,0 +1,25 @@
+.header {
+    justify-content: space-between;
+    max-width: 98%;
+    max-height: 80%;
+}
+
+.header-title {
+    font-size: 3em;
+    font-weight: bold;
+    color: #B38445;
+    margin-right: auto;
+    text-align: left;
+  }
+
+.new-game-button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: auto;
+    background-color: #B38445;
+    color: white;
+    border: none;
+    cursor: pointer;
+    float: right;
+  }
