@@ -18,7 +18,7 @@ class Board extends Component {
         for (let i = 0; i < this.rows; i++) {
             this.myBoard[i] = new Array(this.cols);
             for (let j = 0; j < this.cols; j++) {
-                this.myBoard[i][j] = {row: i, col: j, isClicked: false, isRevealed: false, isBomb: true, noOfBombNeighbors: 0};
+                this.myBoard[i][j] = {row: i, col: j, isClicked: false, isRevealed: false, isBomb: true, noOfBombNeighbors: 0 };
             }
         }
         this.state = { 
@@ -148,7 +148,7 @@ class Board extends Component {
           {
           this.state.boardState.map((row, i) =>
             row.map((item, j) =>
-              <BoardItem key={i * 5 + j} row={i} col={j} isClicked={item.isClicked} isRevealed={item.isRevealed} isBomb={item.isBomb} noOfBombNeighbors={item.noOfBombNeighbors} posX={this.new_x} posY={this.new_y} onClick={this.handleBoardItemClick}/>
+              <BoardItem key={i * 5 + j} row={i} col={j} isClicked={item.isClicked} isRevealed={item.isRevealed} isBomb={item.isBomb} noOfBombNeighbors={item.noOfBombNeighbors} posX={this.new_x} posY={this.new_y}/>
             )
           )}
         </div>

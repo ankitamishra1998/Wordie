@@ -1,32 +1,41 @@
 import React, { Component }  from 'react';
 import './BoardItem.css';
+import { BACKGROUND_COLORS } from '../constants';
 
 class  BoardItem extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            origBgColor: "indianred",
-            clickedBgColor: "#2C8E8E",
-            hoverBgColor: "#5CCDCD",
-            bombBgColor: "black",
-        };
+        this.state = { isMarkedBomb: false };
     }
 
     selectBgColor() {
+        let bgColor;
         if (this.props.isClicked && this.props.isBomb) {
-            return this.state.bombBgColor;
+            bgColor = BACKGROUND_COLORS.bombBgColor;
         } else if (this.props.row === this.props.posX && this.props.col === this.props.posY) {
-            return this.state.hoverBgColor;
+            bgColor =  BACKGROUND_COLORS.hoverBgColor;
         } else if (this.props.isClicked) {
-            return this.state.clickedBgColor;
+            bgColor =  BACKGROUND_COLORS.clickedBgColor;
+        } else if (this.state.isMarkedBomb) {
+            bgColor =  BACKGROUND_COLORS.markBomb;
         } else {
-            return this.state.origBgColor;
+            bgColor =  BACKGROUND_COLORS.origBgColor;
+        }
+
+        return bgColor;
+    }
+
+    handleBoardItemClick = () => {
+        if (this.state.isMarkedBomb) {
+            this.setState({ isMarkedBomb: false });
+        } else {
+            this.setState({ isMarkedBomb: true });
         }
     }
 
     render() {
         return (
-            <div style={{ backgroundColor: this.selectBgColor() }} className="board-item">
+            <div style={{ backgroundColor: this.selectBgColor() }} className="board-item" onClick={this.handleBoardItemClick}>
             {this.props.isRevealed && <div className="reveal">{this.props.noOfBombNeighbors}</div>}
             {this.props.isClicked && this.props.isBomb && <div className="bomb"></div>}
             </div>
