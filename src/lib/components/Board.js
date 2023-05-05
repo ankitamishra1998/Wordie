@@ -210,8 +210,8 @@ class Board extends Component {
     render() {
         return (
             <div>
-                {this.state.isFoundBomb && <Modal title={"Game over!"} buttonText={"Try again"} rerender={this.rerender} />}
-                {this.state.isGameWon && <Modal title={"Congratulations!"} buttonText={"Play again"} rerender={this.rerender} isGameWon={this.state.isGameWon} word={this.props.word}/>}
+                {this.state.isFoundBomb && <Modal title={"Game over!"} buttonText={"Try again"} resetGame={this.props.resetGame} />}
+                {this.state.isGameWon && <Modal title={"Congratulations!"} buttonText={"Play again"} resetGame={this.props.resetGame} isGameWon={this.state.isGameWon} word={this.props.word}/>}
                 <div className="board-container" onKeyDown={this.handleKeyDown}>
                     {
                         this.state.boardState.map((row, i) =>

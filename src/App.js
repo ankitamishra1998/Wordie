@@ -9,11 +9,12 @@ class App extends Component {
     this.boardRef = React.createRef();
     this.state = {
       gameInProgress: true,
-      word: null,
+      word: null
     }
+    this.generateRandomWord();
   }
 
-  componentDidMount() {
+  generateRandomWord() {
     const url = 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt';
     fetch(url)
       .then(response => response.text())
@@ -28,19 +29,18 @@ class App extends Component {
   resetGame = () => {
     this.setState({
       gameInProgress: false,
-      word: null,
+      word: null
     });
+    this.generateRandomWord();
     this.boardRef.current.rerender();
   }
 
   render() {
-    if (!this.state.word) return;
-
     return (
       <div className="game-container">
         <div className="game-content">
           <Header className="header" resetGame={this.resetGame}/>
-          <Board ref={this.boardRef} word={this.state.word}/>
+          <Board ref={this.boardRef} word={this.state.word} resetGame={this.resetGame}/>
         </div>
       </div>
     );
