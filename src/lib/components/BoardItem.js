@@ -37,7 +37,7 @@ class  BoardItem extends Component {
             <div style={{ backgroundColor: this.selectBgColor() }} className="board-item" onClick={this.handleBoardItemClick}>
             {isRevealed && !(row === 4 && col === 4) && <div className="reveal">{noOfBombNeighbors}</div>}
             {row === 4 && col === 4 && <div className="reveal">
-                <FontAwesomeIcon style={{ color: '#c8a019' }} icon={faCrown}/>
+                <FontAwesomeIcon style={{ color: 'tan' }} icon={faCrown}/>
                 </div>}
             {isClicked && isBomb && <div className="bomb"></div>}
             </div>

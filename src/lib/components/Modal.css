@@ -69,10 +69,33 @@
 
 @media screen and (max-width: 700px) {
     .modal-title {
-        font-size: 3em;
+        font-size: 2em;
         font-weight: bold;
         color: #B38445;
         margin-bottom: 20px;
         text-align: center;
+    }
+    
+    .modal-button {
+        font-size: 1em;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+        background-color: #B38445;
+        color: lavender;
+        border: none;
+        cursor: pointer;
+    }
+
+    .modal-help-section {
+        font-size: 1em;
+        color: #B38445;
+        text-align: left;
+    }
+
+    .icon {
+        font-size: x-large;
+        margin: 15px;
+        margin-top: 10px;
     }
   }

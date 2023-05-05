@@ -11,8 +11,10 @@ class Modal extends React.Component {
     step3: "Click a tile to flag it as a potential mine",
     step4: "Reach the crown to discover the wotd",
     step5: "Step on a mine, and you lose",
-    step6: "So, tread carefully and goodluck!"
+    step6: "Tread carefully and goodluck!"
   }
+
+  titlePadding = this.props.isHelpModal ? '45%' : '0%';
 
   handleClick = () => {
     if (this.props.isGameWon) return;
@@ -38,7 +40,7 @@ class Modal extends React.Component {
     return (
       <div className="modal-container" onClick={() => this.handleClick()}>
         <div className="modal-content">
-          <h1 className="modal-title">{title}</h1>
+          <h1 className="modal-title" style={{ paddingRight: this.titlePadding }}>{title}</h1>
           {
             this.props.isHelpModal && 
             <div>
@@ -69,7 +71,7 @@ class Modal extends React.Component {
             </div>
           }
           {this.props.isGameWon && <Word word={this.props.word} /> }
-          <button className="modal-button" onClick={() => this.handleButtonClick()}>{buttonText}</button>
+          {!this.props.isHelpModal && <button className="modal-button" onClick={() => this.handleButtonClick()}>{buttonText}</button>}
         </div>
       </div>
     );
