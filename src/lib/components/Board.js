@@ -20,7 +20,7 @@ class Board extends Component {
                 y: 0
             },
             isFoundBomb: false,
-            isGameWon: true,
+            isGameWon: false,
         };
     }
 

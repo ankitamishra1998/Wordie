@@ -18,7 +18,7 @@ class App extends Component {
     fetch(url)
       .then(response => response.text())
       .then(data => {
-          const words = data.split('\n').filter(word => word.length >= 5 && word.length <= 12);
+          const words = data.split('\n').filter(word => word.length >= 5 && word.length <= 9);
           const randomNumber = Math.floor(Math.random() * (words.length+1)); 
           this.setState({ word: words[randomNumber] });
       })
