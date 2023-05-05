@@ -19,13 +19,14 @@
     color: #B38445;
     margin-right: auto;
     text-align: left;
-    margin-left: 7px;
+    margin-left: 2px;
   }
 
 .new-game-button {
     font-size: 1.2em;
     padding: 10px 20px;
     border-radius: 5px;
+    margin-top: 65px;
     margin-left: auto;
     background-color: #B38445;
     color: white;
@@ -34,7 +35,14 @@
     float: right;
   }
 
+.sub-sub-header {
+    display: flex;
+    flex-direction: row;
+}
+
 .helpIcon {
     font-size: xx-large;
-    margin: 10px;
+    margin: 5px;
+    margin-top: 50px;
+    color: #B38445;
 }

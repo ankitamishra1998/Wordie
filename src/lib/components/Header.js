@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './Header.css'
 import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
-    gameInstructions = "Navigate using arrow keys. \n\nYour goal is to reach the bottom-rightmost tile to reveal the word of the day. \n\n The numbers on each tile tell you the number of mines that surrounds it. Step on a mine, and you lose. \n \n Click on a tile to mark it as a potential mine. \n\n So, thread carefully and good luck!";
+    gameInstructions = "Navigate using arrow keys. \n\nYour goal is to reach the bottom-rightmost tile to reveal the word of the day. \n\n The numbers on each tile tell you the number of mines that surrounds it. \n \n Click on a tile to mark it as a potential mine. \n\n Step on a mine, and you lose. \n\n So, thread carefully and good luck!";
 
     constructor(props) {
         super(props);
@@ -35,16 +35,18 @@ class Header extends Component {
         <div>
             {this.state.showHelp && <Modal 
                 title={"How to play?"} 
-                gameInstructions={this.gameInstructions} 
-                content={"Got it"} 
+                content={this.gameInstructions} 
+                buttonText={"Got it"} 
                 isHelpModal={this.state.showHelp} 
                 closeGameInstructions={this.closeGameInstructions}/>}
             <header className="header">
             <div className="sub-header">
-                <h1 className="header-title">Word Mine</h1>
-                <h3 className="header-content">Streak: 0</h3>
+                <div className="sub-sub-header">
+                    <h1 className="header-title">Turnstile</h1>
+                    <FontAwesomeIcon className="helpIcon" icon={faCircleQuestion} onClick={this.showGameInstructions}/>
+                </div>
+                <h3 className="header-content">Mine the word of the day</h3>
             </div>
-            <FontAwesomeIcon className="helpIcon" icon={faQuestionCircle} onClick={this.showGameInstructions}/>
             <button className="new-game-button" onClick={this.handleClick}>New Game</button>
             </header>
         </div>

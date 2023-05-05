@@ -20,7 +20,7 @@ class Board extends Component {
                 y: 0
             },
             isFoundBomb: false,
-            isGameWon: false,
+            isGameWon: true,
         };
     }
 
@@ -201,7 +201,7 @@ class Board extends Component {
                         y: new_y
                     },
                     isFoundBomb,
-                    isGameWon
+                    isGameWon,
                 });
             }
         }
@@ -210,8 +210,8 @@ class Board extends Component {
     render() {
         return (
             <div>
-                {this.state.isFoundBomb && <Modal title={"Game over!"} content={"Try again"} rerender={this.rerender} />}
-                {this.state.isGameWon && <Modal title={"Congratulations, you won!"} content={"Play again"} rerender={this.rerender} />}
+                {this.state.isFoundBomb && <Modal title={"Game over!"} buttonText={"Try again"} rerender={this.rerender} />}
+                {this.state.isGameWon && <Modal title={"Congratulations!"} buttonText={"Play again"} rerender={this.rerender} isGameWon={this.state.isGameWon} word={this.props.word}/>}
                 <div className="board-container" onKeyDown={this.handleKeyDown}>
                     {
                         this.state.boardState.map((row, i) =>

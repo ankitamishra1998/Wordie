@@ -1,4 +1,6 @@
-export function randomWalkAlgorithm() {
+import 'whatwg-fetch';
+
+export const randomWalkAlgorithm = () => {
     const grid = Array.from({ length: 5 }, () => Array.from({ length: 5 }, () => 0));
     // Set the start and end cells
     const start = [4, 4];   // top-left corner
@@ -36,6 +38,6 @@ export function randomWalkAlgorithm() {
 }
 
 // Helper function to compare two arrays
-export function arraysEqual(arr1, arr2) {
+export const arraysEqual = (arr1, arr2) => {
   return arr1.length === arr2.length && arr1.every((val, index) => val === arr2[index]);
-}
+} 
