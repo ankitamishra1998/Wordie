@@ -25,7 +25,7 @@
 
 /* Modal title */
 .modal-title {
-    font-size: 4em;
+    font-size: 3em;
     font-weight: bold;
     color: #B38445;
     margin-bottom: 20px;
@@ -33,11 +33,21 @@
 }
 
 .modal-help-section {
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 1.5em;
     color: #B38445;
-    margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+}
+
+.instructionContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.icon {
+    font-size: x-large;
+    margin: 15px;
+    margin-top: 20px;
 }
 
 /* Modal button */
@@ -45,6 +55,7 @@
     font-size: 1.2em;
     padding: 10px 20px;
     border-radius: 5px;
+    margin-top: 20px;
     background-color: #B38445;
     color: white;
     border: none;

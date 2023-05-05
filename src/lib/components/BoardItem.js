@@ -1,6 +1,8 @@
 import React, { Component }  from 'react';
 import './BoardItem.css';
 import { BACKGROUND_COLORS } from '../constants';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
 
 class  BoardItem extends Component {
     selectBgColor() {
@@ -30,10 +32,13 @@ class  BoardItem extends Component {
     }
 
     render() {
-        const { isClicked, isRevealed, isBomb, noOfBombNeighbors } = this.props;
+        const { isClicked, isRevealed, isBomb, noOfBombNeighbors, row, col } = this.props;
         return (
             <div style={{ backgroundColor: this.selectBgColor() }} className="board-item" onClick={this.handleBoardItemClick}>
-            {isRevealed && <div className="reveal">{noOfBombNeighbors}</div>}
+            {isRevealed && !(row === 4 && col === 4) && <div className="reveal">{noOfBombNeighbors}</div>}
+            {row === 4 && col === 4 && <div className="reveal">
+                <FontAwesomeIcon style={{ color: '#c8a019' }} icon={faCrown}/>
+                </div>}
             {isClicked && isBomb && <div className="bomb"></div>}
             </div>
         );
