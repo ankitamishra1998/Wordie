@@ -42,7 +42,7 @@ class Header extends Component {
             <header className="header">
             <div className="sub-header">
                 <div className="sub-sub-header">
-                    <h1 className="header-title">Shabd</h1>
+                    <h1 className="header-title">Mumble</h1>
                     <FontAwesomeIcon className="helpIcon" icon={faCircleQuestion} onClick={this.showGameInstructions}/>
                 </div>
                 <h3 className="header-content">Discover the word of the day</h3>

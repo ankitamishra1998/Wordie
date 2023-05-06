@@ -8,10 +8,10 @@ class Modal extends React.Component {
   gameInstructions = {
     step1: "Navigate using the arrow keys",
     step2: "Move to reveal the number of adjacent mines",
-    step3: "Click a tile to flag it as a potential mine",
+    step3: "Click on a tile to flag it as a potential mine",
     step4: "Reach the crown to discover the wotd",
     step5: "Step on a mine, and you lose",
-    step6: "Tread carefully and goodluck!"
+    step6: "So, tread carefully and goodluck!"
   }
 
   titlePadding = this.props.isHelpModal ? '45%' : '0%';
