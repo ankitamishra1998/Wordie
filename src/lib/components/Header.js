@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
-    gameInstructions = "Navigate using arrow keys. \n\nYour goal is to reach the bottom-rightmost tile to reveal the word of the day. \n\n The numbers on each tile tell you the number of mines that surrounds it. \n \n Click on a tile to mark it as a potential mine. \n\n Step on a mine, and you lose. \n\n So, thread carefully and good luck!";
-
     constructor(props) {
         super(props);
         this.state = {
@@ -30,6 +28,13 @@ class Header extends Component {
         })
     }
 
+    scrollToBottom = () => {
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth'
+        });
+      }
+
     render() {
       return (
         <div>
@@ -43,7 +48,7 @@ class Header extends Component {
             <div className="sub-header">
                 <div className="sub-sub-header">
                     <h1 className="header-title">Mumble</h1>
-                    <FontAwesomeIcon className="helpIcon" icon={faCircleQuestion} onClick={this.showGameInstructions}/>
+                    <FontAwesomeIcon className="helpIcon" icon={faCircleQuestion} onClick={this.scrollToBottom}/>
                 </div>
                 <h3 className="header-content">Discover the word of the day</h3>
             </div>

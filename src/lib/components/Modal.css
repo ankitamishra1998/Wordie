@@ -38,12 +38,6 @@
     text-align: left;
 }
 
-.instructionContainer {
-    display: flex;
-    flex-direction: row;
-    margin: 5px;
-}
-
 .icon {
     font-size: x-large;
     margin: 15px;

@@ -1,17 +1,53 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  background-color: lavender;
+  align-items: center;
+}
+
 .game-container {
-  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lavender;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.instructionContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}
+
+.instructions-title {
+  font-size: 3em;
+  font-weight: bold;
+  color: #B38445;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.gameInstructions {
+  margin-top: 200px;
+  margin-bottom: 200px;
+  margin-left: 50px;
+}
+
+.author {
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
 }

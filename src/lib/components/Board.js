@@ -138,6 +138,8 @@ class Board extends Component {
     }
 
     handleKeyDown = (event) => {
+        event.preventDefault();
+        
         let cur_x = this.state.position.x;
         let cur_y = this.state.position.y;
         let new_x = 0;

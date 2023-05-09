@@ -7,7 +7,7 @@ class Word extends React.Component {
   render() {
     const { word } = this.props;
     let wordArr = word.split('');
-    wordArr = wordArr.splice(0, word.length-1);
+    wordArr = wordArr.splice(0, word.length);
 
     return (
       <div className="wordContainer">
