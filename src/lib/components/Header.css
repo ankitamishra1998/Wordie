@@ -26,7 +26,7 @@
     font-size: 1.2em;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-top: 65px;
+    margin-top: 35px;
     margin-left: auto;
     background-color: #B38445;
     color: lavender;
@@ -35,9 +35,55 @@
     float: right;
   }
 
+.new-game-button:hover {
+  background-color: #C49C67;
+}
+
 .sub-sub-header {
     display: flex;
     flex-direction: row;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.sub-score {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40px;
+  padding-left: 15%;
+}
+
+.streak {
+  width: 30%;
+  height: 70%;
+  background-color: tan;
+  color: lavender;
+  margin-top: 5px;
+  border-radius: 5%;
+  border-color: #B38445;
+  padding: 3% 7% 7% 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.best {
+  width: 30%;
+  height: 70%;
+  background-color: tan;
+  color: lavender;
+  margin: 5px;
+  border-radius: 5%;
+  border-color: #B38445;
+  padding: 3% 7% 7% 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .helpIcon {
@@ -45,4 +91,8 @@
     margin: 5px;
     margin-top: 50px;
     color: #B38445;
+}
+
+.helpIcon:hover {
+  color: #C49C67;
 }

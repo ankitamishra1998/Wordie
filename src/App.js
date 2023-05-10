@@ -11,11 +11,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.boardRef = React.createRef();
+    const word = this.generateRandomWord();
+    const best = this.getBestScore();
+    const streak = this.getStreak();
     this.state = {
       gameInProgress: true,
-      word: 'Impish'
+      word,
+      best,
+      streak,
     }
-    this.generateRandomWord();
+    
   }
 
   gameInstructions = {
@@ -29,15 +34,45 @@ class App extends Component {
 
   generateRandomWord() {
     const randomNumber = Math.floor(Math.random() * (WORDLIST.length+1)); 
-    this.setState({ word: WORDLIST[randomNumber] });
+    return WORDLIST[randomNumber];
+  }
+
+  getBestScore() {
+    const best = localStorage.getItem('best');
+    if (best) return best;
+    localStorage.setItem('best', 0);
+    return '0';
+  }
+
+  getStreak() {
+    const streak = localStorage.getItem('streak');
+    if (streak) return streak;
+    localStorage.setItem('streak', 0);
+    return '0';
+  }
+
+  setStreakAndBestScore() {
+    const streak = localStorage.getItem('streak');
+    const val = parseInt(streak) + 1;
+    localStorage.setItem('streak', val.toString());
+
+    const best = localStorage.getItem('best');
+
+    if (parseInt(val) > parseInt(best)) {
+      localStorage.setItem('best', val);
+    }
   }
 
   resetGame = () => {
+    const word = this.generateRandomWord();
+    const best = this.getBestScore();
+    const streak = this.getStreak();
     this.setState({
       gameInProgress: false,
-      word: 'Impish'
+      word,
+      best,
+      streak,
     });
-    this.generateRandomWord();
     this.boardRef.current.rerender();
   }
 
@@ -46,8 +81,8 @@ class App extends Component {
       <div className="page">
         <div className="game-container">
           <div className="game-content">
-            <Header className="header" resetGame={this.resetGame}/>
-            <Board ref={this.boardRef} word={this.state.word} resetGame={this.resetGame}/>
+            <Header className="header" resetGame={this.resetGame} streak={this.state.streak} best={this.state.best} />
+            <Board ref={this.boardRef} word={this.state.word} resetGame={this.resetGame} setStreakAndBestScore={this.setStreakAndBestScore}/>
           </div>
         </div>
         <div className="gameInstructions">

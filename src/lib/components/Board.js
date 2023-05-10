@@ -191,10 +191,16 @@ class Board extends Component {
                 
 
                 let isFoundBomb = this.state.isFoundBomb;
-                if (this.state.boardState[new_x][new_y].isBomb) { isFoundBomb = true; }
+                if (this.state.boardState[new_x][new_y].isBomb) { 
+                    isFoundBomb = true; 
+                    localStorage.setItem('streak', 0);
+                }
 
                 let isGameWon = this.state.isGameWon;
-                if (new_x === this.rows-1 && new_y === this.cols-1) { isGameWon = true; }
+                if (new_x === this.rows-1 && new_y === this.cols-1) { 
+                    isGameWon = true;
+                    this.props.setStreakAndBestScore();
+                }
 
                 this.setState({
                     boardState: newBoardState,

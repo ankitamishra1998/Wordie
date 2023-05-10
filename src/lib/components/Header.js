@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Header.css'
-import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
@@ -38,12 +37,6 @@ class Header extends Component {
     render() {
       return (
         <div>
-            {this.state.showHelp && <Modal 
-                title={"How to play?"} 
-                content={this.gameInstructions} 
-                buttonText={"Got it"} 
-                isHelpModal={this.state.showHelp} 
-                closeGameInstructions={this.closeGameInstructions}/>}
             <header className="header">
             <div className="sub-header">
                 <div className="sub-sub-header">
@@ -52,7 +45,19 @@ class Header extends Component {
                 </div>
                 <h3 className="header-content">Discover the word of the day</h3>
             </div>
-            <button className="new-game-button" onClick={this.handleClick}>New Game</button>
+            <div className="score">
+                <div className="sub-score">
+                    <div className="streak">
+                        <p style={{ fontWeight: "600", fontSize: "x-small", margin: "0%" }}>STREAK</p>
+                        <p style={{ marginTop: "5%", fontWeight: "900" }}>{this.props.streak}</p>
+                    </div>
+                    <div className="best">
+                        <p style={{ fontWeight: "600", fontSize: "x-small", margin: "0%" }}>BEST</p>
+                        <p style={{ marginTop: "5%", fontWeight: "900" }}>{this.props.best}</p>
+                    </div>
+                </div>
+                <button className="new-game-button" onClick={this.handleClick}>New Game</button>
+            </div>
             </header>
         </div>
       );
