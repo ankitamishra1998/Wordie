@@ -2,8 +2,10 @@ import React from "react";
 import './WordBlock.css';
 
 class WordBlock extends React.Component {
+  ascii = (a) => { return a.charCodeAt(0); }
+
   isLetter = (char) => {
-    if (char === ' ' || char === '-') {
+    if (char === ' ' || char === '-' || this.ascii(char) === 160) {
       return false;
     }
     return true;

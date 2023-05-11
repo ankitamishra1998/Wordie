@@ -625,7 +625,7 @@ export const WORDLIST = [
     "Chauffeured",
     "Uninitiated",
     "Amorous",
-    "Pura vida",
+    "Pura Vida",
     "Amble",
     "Contempt",
     "Bodega",
