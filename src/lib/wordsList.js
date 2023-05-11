@@ -667,7 +667,6 @@ export const WORDLIST = [
     'Tethered',
     'Profanity', 
     'Laced',
-    'Mumble',
     'Conspiratorial', 
     'Glare',
     'Larcenous',
