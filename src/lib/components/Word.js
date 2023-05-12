@@ -6,15 +6,26 @@ import WordBlock from "./WordBlock";
 class Word extends React.Component {
   render() {
     const { word } = this.props;
-    let wordArr = word.split('');
-    wordArr = wordArr.splice(0, word.length);
+    console.log("PROPSSS: ", this.props);
+    console.log("WORDDDD: ", this.props.word);
+    let wordArr = word.key.split('');
+    wordArr = wordArr.splice(0, word.key.length);
 
     return (
-      <div className="wordContainer">
-        {
-            wordArr.map((character) => 
-                <WordBlock letter={character.toUpperCase()} />   
-        )}
+      <div>
+        <div className="wordContainer">
+          {
+              wordArr.map((character) => 
+                  <WordBlock letter={character.toUpperCase()} />   
+          )}
+        </div>
+        <div className="infoContainer">
+          <h2>{word.value.partOfSpeech}</h2>
+          <h3>{word.value.firstUsage}</h3>
+          <h3>{word.value.firstSentence}</h3>
+          <h3>{word.value.secondUsage}</h3>
+          <h3>{word.value.secondSentence}</h3>
+        </div>
       </div>
     );
   }

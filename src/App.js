@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import Board from './lib/components/Board';
 import Header from './lib/components/Header';
 import './App.css';
-import { WORDLIST } from './lib/wordsList';
 import { ReactComponent as MySvg } from './ankita.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKeyboard, faHashtag, faCrown, faBomb, faClover, faFlag } from '@fortawesome/free-solid-svg-icons';
+
+const wordJson = require('./lib/meanings.json');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.boardRef = React.createRef();
-    const word = this.generateRandomWord();
+    const wordObj = this.generateRandomWord();
     const best = this.getBestScore();
     const streak = this.getStreak();
     this.state = {
       gameInProgress: true,
-      word,
+      word: wordObj,
       best,
       streak,
     }
-    
   }
 
   gameInstructions = {
@@ -33,8 +33,16 @@ class App extends Component {
   }
 
   generateRandomWord() {
-    const randomNumber = Math.floor(Math.random() * (WORDLIST.length+1)); 
-    return WORDLIST[randomNumber];
+    const words = Object.keys(wordJson)
+    const randomNumber = Math.floor(Math.random() * (words.length+1)); 
+    const randomWord = words[randomNumber];
+    console.log("RNDOMMMM: ", randomWord);
+    console.log("OBJJJJJ: ", wordJson[randomWord][0]);
+    const wordie = {
+      'key': randomWord,
+      'value': wordJson[randomWord][0]
+    }
+    return wordie;
   }
 
   getBestScore() {
@@ -64,12 +72,12 @@ class App extends Component {
   }
 
   resetGame = () => {
-    const word = this.generateRandomWord();
+    const wordObj = this.generateRandomWord();
     const best = this.getBestScore();
     const streak = this.getStreak();
     this.setState({
       gameInProgress: false,
-      word,
+      word: wordObj,
       best,
       streak,
     });

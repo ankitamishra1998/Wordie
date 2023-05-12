@@ -2,84 +2,113 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-# Get the list of words from json file
-# with open('../wordies.json', 'r') as f:
-#     jsonFile = json.load(f)
+'''
 
-# words = jsonFile["words"]
+'''
 
-words = [ 'Consummate' ]
+def getWords():
+    with open('../wordies.json', 'r') as f:
+        jsonFile = json.load(f)
 
-url = 'https://www.merriam-webster.com/dictionary/'
+    words = jsonFile["words"]
 
-dictionary = {}
-meanings = []
+    return words
 
-# Iterate over the list of words
-for word in words:
-    response = requests.get(url + word)
+def formatSentence(usage, subContent):
+    for sub in subContent:
+        if sub in usage:
+            return "| " + sub
 
-    soup = BeautifulSoup(response.content, 'html.parser')
-    # definitions = soup.find_all('span', class_='dtText')
-    # partsOfSpeech = soup.find_all('h2', class_='parts-of-speech')
-    entries = soup.find_all('div', class_='entry-word-section-container')
-    
-    '''
-    insteas of doing this you can get the labels and the meaning then only extract
-    the meaning where the label is 1
-    '''
 
-    for entry in entries:
-        print(entry.attrs)
-        for child in entry.children:
-            if child.name:
-                if child.attrs:
-                    #print(child.attrs)
-                    childClass = child.attrs.get('class', None)
-                    if childClass:
-                        #print(childClass)
-                        if childClass[0] == 'vg':
-                            for gchild in child.children:
-                                if gchild.name:
-                                    if gchild.attrs:
-                                        gchildClass = gchild.attrs.get('class', None)
-                                        if gchildClass[0] == 'vg-sseq-entry-item':
-                                            #print(gchild.attrs)
-                                            for ggchild in gchild.children:
-                                                if ggchild.name:
-                                                    if ggchild.attrs:
-                                                        ggchildClass = ggchild.attrs.get('class', None)
-                                                        if ggchildClass:
-                                                           if ggchildClass[0] == 'sb':
-                                                               for gggchild in ggchild.children:
-                                                                if gggchild.name:
-                                                                    if gggchild.attrs:
-                                                                        gggchildClass = gggchild.attrs.get('class', None)
-                                                                        if gggchildClass[0] == 'sb-0':
-                                                                            for ggggchild in gggchild.children:
-                                                                                if ggggchild.name:
-                                                                                    if ggggchild.attrs:
-                                                                                        ggggchildClass = ggggchild.attrs.get('class', None)
-                                                                                        if ggggchildClass:
-                                                                                            print(ggggchild.attrs)
-                                                                            
-                                            break
-                            break
-                                
+def formatElement(element, examplelist, partOfSpeech):
+    meaningObject = {}
+    meaningObject['partOfSpeech'] = partOfSpeech
 
-    # if partsOfSpeech:
-    #     for type in partsOfSpeech:
-    #         print(type.text.strip())
+    for i in range(len(element)):
+        if element[i] == '1':
+            cur_idx = i
+            if len(element[cur_idx+1]) == 1:
+                cur_idx += 1
+            if cur_idx + 2 < len(element):
+                meaningObject['firstUsage'] = element[cur_idx+1]
+                meaningObject['firstSentence'] = formatSentence(element[cur_idx+2], examplelist)
+            else:
+                if cur_idx + 1 < len(element):
+                    meaningObject['firstUsage'] = element[cur_idx+1]
 
-    # if definitions:
-    #     for definition in definitions:
-    #         meanings.append({
-    #             "definition": definition.text.strip()[2:]
-    #         })
-    
-    dictionary[word] = meanings
+        if element[i] == '2':
+            cur_idx = i
+            if len(element[cur_idx+1]) == 1:
+                cur_idx += 1
+            if cur_idx + 2 < len(element):
+                meaningObject['secondUsage'] = element[cur_idx+1]
+                meaningObject['secondSentence'] = formatSentence(element[cur_idx+2], examplelist)
+            else:
+                if cur_idx + 1 < len(element):
+                    meaningObject['secondUsage'] = element[cur_idx+1]
+            
 
-# Print the meanings of the words
-pretty_json = json.dumps(dictionary, indent=4)
-print(pretty_json)
+    return meaningObject
 
+def scrapeWords(wordsList):
+    dictionary = {}
+    url = 'https://www.merriam-webster.com/dictionary/'
+
+    for word in wordsList:
+        print(f"Word: {word}")
+        print("\n")
+        response = requests.get(url + word)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        meanings = []
+
+        listofelements = []
+        examplelist = []
+        partsOfSpeechList = []
+        dictEntry = soup.find_all('div', class_='entry-word-section-container')
+        partsOfSpeech = soup.find_all('h2', class_='parts-of-speech')
+        examples = soup.find_all('div', class_='sub-content-thread')
+
+        for partOfSpeech in partsOfSpeech:
+            partsOfSpeechList.append(partOfSpeech.text.strip())
+
+        print(f"Parts of Speech: {partsOfSpeechList}")
+        print("\n")
+        for entry in dictEntry:
+            listofelements.append(entry.text.strip())
+
+        for example in examples:
+            examplelist.append(example.text.strip())
+
+        for i in range(len(listofelements)):
+            words = listofelements[i].split("\n")
+            filtered_words = [x for x in words if (x != '' and x != ' ')]
+            mapped_words = [word.strip() for word in filtered_words]
+            print(f"Element: {mapped_words}")
+            print("\n")
+
+            partOfSpeech = None
+            if len(partsOfSpeechList) > i:
+                partOfSpeech = partsOfSpeechList[i]
+            meaningObject = formatElement(mapped_words, examplelist, partOfSpeech)
+            meanings.append(meaningObject)
+
+        dictionary[word] = meanings
+
+    return dictionary
+
+def printDictionary(dictionary):
+    pretty_json = json.dumps(dictionary, indent=4)
+    print(pretty_json)
+
+def writeToFile(dictionary):
+    with open("../meanings.json", "w") as f:
+        json.dump(dictionary, f)
+
+def main():
+    words = getWords()
+    dictionary = scrapeWords(words)
+    #printDictionary(dictionary)
+    writeToFile(dictionary)
+
+if __name__ == '__main__':
+    main()
