@@ -13,7 +13,7 @@ class Modal extends React.Component {
   }
 
   handleClick = () => {
-    if (this.props.isGameWon) return;
+    // if (this.props.isGameWon) return;
 
     if (this.props.isHelpModal) {
       this.props.closeGameInstructions();

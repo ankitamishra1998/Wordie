@@ -37,10 +37,10 @@ class App extends Component {
     const randomNumber = Math.floor(Math.random() * (words.length+1)); 
     const randomWord = words[randomNumber];
     console.log("RNDOMMMM: ", randomWord);
-    console.log("OBJJJJJ: ", wordJson[randomWord][0]);
+    console.log("OBJJJJJ: ", wordJson[randomWord]);
     const wordie = {
       'key': randomWord,
-      'value': wordJson[randomWord][0]
+      'value': wordJson[randomWord]
     }
     return wordie;
   }
