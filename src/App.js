@@ -4,7 +4,7 @@ import Header from './lib/components/Header';
 import './App.css';
 import { ReactComponent as MySvg } from './ankita.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKeyboard, faHashtag, faCrown, faBomb, faClover, faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faKeyboard, faHashtag, faCrown, faBomb, faClover, faFlag, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const wordJson = require('./lib/meanings.json');
 
@@ -121,9 +121,10 @@ class App extends Component {
           </div>
         </div>
         <div className="author">
-          <p style={{marginRight: "5px", fontWeight: "bold", marginTop: "2px", color: "#B38445" }}>Created by: </p>
-          <p style={{marginTop: "2px", marginRight: "5px", color: "#B38445"}}> Ankita Mishra</p>
-          <MySvg style={{width: "25px", height: "25px" }} />
+          <p style={{marginRight: "5px", fontWeight: "bold", marginTop: "2px", color: "#B38445" }}>Made with 
+          <FontAwesomeIcon style={{ color: 'indianred', marginLeft: "5px", marginRight: "5px" }} icon={faHeart}/>
+           by Ankita Mishra</p>
+          <MySvg style={{width: "20px", height: "20px", marginTop: "4px" }} />
         </div>
       </div>
     );

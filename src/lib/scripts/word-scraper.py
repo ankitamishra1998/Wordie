@@ -30,22 +30,26 @@ def formatElement(element, examplelist, partOfSpeech):
             if len(element[cur_idx+1]) == 1:
                 cur_idx += 1
             if cur_idx + 2 < len(element):
-                meaningObject['firstUsage'] = element[cur_idx+1]
-                meaningObject['firstSentence'] = formatSentence(element[cur_idx+2], examplelist)
+                if element[cur_idx+1][0] == ":"
+                    meaningObject['firstUsage'] = element[cur_idx+1]
+                    meaningObject['firstSentence'] = formatSentence(element[cur_idx+2], examplelist)
             else:
                 if cur_idx + 1 < len(element):
-                    meaningObject['firstUsage'] = element[cur_idx+1]
+                    if element[cur_idx+1][0] == ":"
+                        meaningObject['firstUsage'] = element[cur_idx+1]
 
         if element[i] == '2':
             cur_idx = i
             if len(element[cur_idx+1]) == 1:
                 cur_idx += 1
             if cur_idx + 2 < len(element):
-                meaningObject['secondUsage'] = element[cur_idx+1]
-                meaningObject['secondSentence'] = formatSentence(element[cur_idx+2], examplelist)
+                if element[cur_idx+1][0] == ":"
+                    meaningObject['secondUsage'] = element[cur_idx+1]
+                    meaningObject['secondSentence'] = formatSentence(element[cur_idx+2], examplelist)
             else:
                 if cur_idx + 1 < len(element):
-                    meaningObject['secondUsage'] = element[cur_idx+1]
+                    if element[cur_idx+1][0] == ":"
+                        meaningObject['secondUsage'] = element[cur_idx+1]
             
 
     return meaningObject
