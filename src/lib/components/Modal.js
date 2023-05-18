@@ -11,22 +11,16 @@ class Modal extends React.Component {
     step5: "Step on a mine, and you lose",
     step6: "So, tread carefully and goodluck!"
   }
-
-  handleClick = () => {
-    // if (this.props.isGameWon) return;
-
-    if (this.props.isHelpModal) {
-      this.props.closeGameInstructions();
-    } else {
-      this.props.resetGame();
-    }
-  };
-
+  
   handleButtonClick = () => {
     if (this.props.isHelpModal) {
       this.props.closeGameInstructions();
     } else {
-      this.props.resetGame();
+      if (this.props.isGameWon) {
+        this.props.resetGame();
+      } else {
+        this.props.resetGame(true);
+      }
     }
   }
 

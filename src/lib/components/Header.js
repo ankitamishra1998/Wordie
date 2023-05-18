@@ -12,7 +12,7 @@ class Header extends Component {
     }
 
     handleClick = () => {
-        this.props.resetGame();
+        this.props.resetGame(true);
     }
 
     showGameInstructions = () => {

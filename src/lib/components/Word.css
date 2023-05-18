@@ -16,12 +16,10 @@
 }
 
 .infoContainer {
-    /* margin: 15px 25px 50px 50px; */
     padding: 15px 25px 50px 50px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border: #B38445;
+    align-items: left;
     color: #B38445;
     width: -webkit-fill-available;
     height: auto;

@@ -69,7 +69,7 @@ class App extends Component {
     }
   }
 
-  resetGame = () => {
+  resetGame = (shouldResetStreak = false) => {
     const wordObj = this.generateRandomWord();
     const best = this.getBestScore();
     const streak = this.getStreak();
@@ -77,8 +77,9 @@ class App extends Component {
       gameInProgress: false,
       word: wordObj,
       best,
-      streak,
+      streak: shouldResetStreak ? 0 : streak,
     });
+    if (shouldResetStreak) localStorage.setItem('streak', 0);
     this.boardRef.current.rerender();
   }
 
