@@ -34,7 +34,7 @@ class Modal extends React.Component {
     const { title, buttonText } = this.props;
 
     return (
-      <div className="modal-container" onClick={() => this.handleClick()}>
+      <div className="modal-container">
         <div className="modal-content">
           <h1 className="modal-title">{title}</h1>
           {this.props.isGameWon && <Word word={this.props.word} /> }

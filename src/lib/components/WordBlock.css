@@ -1,48 +1,14 @@
 .letterContainer {
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    padding-left: 15px;
+    padding-top: 5px;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: larger;
     background-color: #2C8E8E;
     color: lavender;
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    padding-left: 40px;
-    padding-top: 25px;
-    justify-content: center;
-    border-radius: 15px;
-    font-size: larger;
-    font-weight: bold;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
 }
-
-@media screen and (max-width: 1000px) {
-    .letterContainer {
-        width: 40px;
-        height: 40px;
-        margin: 5px;
-        padding-left: 25px;
-        padding-top: 12px;
-        justify-content: center;
-        border-radius: 15px;
-        font-size: larger;
-        background-color: #2C8E8E;
-        color: lavender;
-        font-weight: bold;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-  }
-
-@media screen and (max-width: 700px) {
-    .letterContainer {
-        width: 30px;
-        height: 30px;
-        margin: 2px;
-        padding-left: 15px;
-        padding-top: 5px;
-        justify-content: center;
-        border-radius: 10px;
-        font-size: larger;
-        background-color: #2C8E8E;
-        color: lavender;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        font-weight: bold;
-    }
-  }

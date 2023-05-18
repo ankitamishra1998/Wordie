@@ -6,7 +6,7 @@ import { ReactComponent as MySvg } from './ankita.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKeyboard, faHashtag, faCrown, faBomb, faClover, faFlag, faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const wordJson = require('./lib/meanings.json');
+const wordJson = require('./lib/meaningsV2.json');
 
 class App extends Component {
   constructor(props) {
@@ -36,8 +36,6 @@ class App extends Component {
     const words = Object.keys(wordJson)
     const randomNumber = Math.floor(Math.random() * (words.length+1)); 
     const randomWord = words[randomNumber];
-    console.log("RNDOMMMM: ", randomWord);
-    console.log("OBJJJJJ: ", wordJson[randomWord]);
     const wordie = {
       'key': randomWord,
       'value': wordJson[randomWord]

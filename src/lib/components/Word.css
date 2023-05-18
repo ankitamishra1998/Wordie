@@ -1,14 +1,28 @@
 .wordContainer {
     display: flex;
     flex-direction: row;
-    margin: 50px;
+    justify-content: center;
+    margin: 25px 50px 15px 50px;
     width: auto;
     height: auto;
 }
 
+.meaningContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: "center";
+    align-items: "left";
+}
+
 .infoContainer {
-    margin: 50px 50px 50px 100px;
+    /* margin: 15px 25px 50px 50px; */
+    padding: 15px 25px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: #B38445;
     color: #B38445;
-    width: auto;
+    width: -webkit-fill-available;
     height: auto;
 }

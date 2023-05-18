@@ -5117,12 +5117,6 @@
             "meanings": [
                 {
                     "meaning": [
-                        "stamp sense 2"
-                    ],
-                    "usage": []
-                },
-                {
-                    "meaning": [
                         "to walk with a loud heavy step usually in anger"
                     ],
                     "usage": [
@@ -5130,12 +5124,8 @@
                     ]
                 },
                 {
-                    "meaning": [
-                        "stamp sense 2"
-                    ],
-                    "usage": [
-                        "stomped on the brakes"
-                    ]
+                    "meaning": [],
+                    "usage": []
                 }
             ]
         },
@@ -5889,53 +5879,6 @@
                         "the quality or state of being impudent"
                     ],
                     "usage": []
-                }
-            ]
-        }
-    ],
-    "Heathen": [
-        {
-            "id": 1,
-            "pos": "adjective",
-            "meanings": [
-                {
-                    "meaning": [
-                        "of or relating to people or nations that do not practice Christianity, Judaism, or Islam ",
-                        "of or relating to heathens (see heathen entry 2 sense 1), their religions, or their customs ",
-                        "pagan"
-                    ],
-                    "usage": [
-                        "heathen rituals"
-                    ]
-                },
-                {
-                    "meaning": [
-                        "strange, uncivilized"
-                    ],
-                    "usage": []
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "pos": "noun",
-            "meanings": [
-                {
-                    "meaning": [
-                        "a person who is not religious or whose religion is not Judaism, Islam, or especially Christianity"
-                    ],
-                    "usage": [
-                        "Was it better to marry? Even if the man was a heathen?\u2014Zadie Smith",
-                        "\u2026 gathered in the evening \u2026 to look me over, their first heathen.\u2014Arthur Miller"
-                    ]
-                },
-                {
-                    "meaning": [
-                        "a nonreligious or uncultured person"
-                    ],
-                    "usage": [
-                        "\u2026 they grew up with a keen awareness of Edward's business partner, a true heathen who exemplified eccentric creativity and personal flamboyance.\u2014Nicholas Fox Weber"
-                    ]
                 }
             ]
         }
@@ -32063,11 +32006,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "id": 2,
-            "pos": null,
-            "meanings": []
         }
     ],
     "Awesome": [
