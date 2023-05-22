@@ -83,9 +83,14 @@ class App extends Component {
     this.boardRef.current.rerender();
   }
 
+  sendFeedback = () => {
+    window.open('https://forms.gle/EYEH3DzEJTP3oiTSA', '_blank');
+  }
+
   render() {
     return (
       <div className="page">
+        <button onClick={this.sendFeedback} className="sendFeedbackButton">send feedback</button>
         <div className="game-container">
           <div className="game-content">
             <Header className="header" resetGame={this.resetGame} streak={this.state.streak} best={this.state.best} />

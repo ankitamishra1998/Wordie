@@ -92,6 +92,7 @@
     margin: 5px;
     margin-top: 50px;
     color: #B38445;
+    cursor: pointer;
 }
 
 .helpIcon:hover {
