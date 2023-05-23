@@ -34,13 +34,13 @@
   font-weight: bold;
   color: #B38445;
   margin-bottom: 20px;
-  text-align: center;
+  margin-left: 4%;
 }
 
 .gameInstructions {
   margin-top: 200px;
   margin-bottom: 200px;
-  margin-left: 50px;
+  margin-left: 0%;
 }
 
 .author {
@@ -89,6 +89,14 @@
     width: 20px;
     height: 20px;
     margin-top: 1px;
+  }
+
+  .instructions-title {
+    font-size: 1em;
+    font-weight: bold;
+    color: #B38445;
+    margin-bottom: 20px;
+    margin-left: 4%;
   }
 
   .madeBy {
