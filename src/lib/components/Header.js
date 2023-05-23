@@ -43,17 +43,17 @@ class Header extends Component {
                     <h1 className="header-title">Wordie</h1>
                     <FontAwesomeIcon className="helpIcon" icon={faCircleQuestion} onClick={this.scrollToBottom}/>
                 </div>
-                <h3 className="header-content">Discover the word of the day</h3>
+                <h3 className="header-content">Build your vocabulary</h3>
             </div>
             <div className="score">
                 <div className="sub-score">
                     <div className="streak">
-                        <p style={{ fontWeight: "600", fontSize: "x-small", margin: "0%" }}>STREAK</p>
-                        <p style={{ marginTop: "5%", fontWeight: "900" }}>{this.props.streak}</p>
+                        <p className="streakTitle">STREAK</p>
+                        <p className="streakContent">{this.props.streak}</p>
                     </div>
                     <div className="best">
-                        <p style={{ fontWeight: "600", fontSize: "x-small", margin: "0%" }}>BEST</p>
-                        <p style={{ marginTop: "5%", fontWeight: "900" }}>{this.props.best}</p>
+                        <p className="bestTitle">BEST</p>
+                        <p className="bestContent">{this.props.best}</p>
                     </div>
                 </div>
                 <button className="new-game-button" onClick={this.handleClick}>New Game</button>

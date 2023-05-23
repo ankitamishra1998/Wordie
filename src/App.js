@@ -125,10 +125,10 @@ class App extends Component {
           </div>
         </div>
         <div className="author">
-          <p style={{marginRight: "5px", fontWeight: "bold", marginTop: "2px", color: "#B38445" }}>Made with 
+          <p className="madeBy">Made with 
           <FontAwesomeIcon style={{ color: 'indianred', marginLeft: "5px", marginRight: "5px" }} icon={faHeart}/>
            by Ankita Mishra</p>
-          <MySvg style={{width: "20px", height: "20px", marginTop: "4px" }} />
+          <MySvg className="mySvg"/>
         </div>
       </div>
     );

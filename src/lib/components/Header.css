@@ -89,7 +89,7 @@
 
 .helpIcon {
     font-size: xx-large;
-    margin: 5px;
+    margin: 10px;
     margin-top: 50px;
     color: #B38445;
     cursor: pointer;
@@ -97,4 +97,87 @@
 
 .helpIcon:hover {
   color: #C49C67;
+}
+
+.streakTitle {
+  font-weight: 600;
+  font-size: x-small;
+  margin: 0%;
+}
+
+.streakContent {
+  margin-top: 5%;
+  font-weight: 900;
+}
+
+.bestTitle {
+  font-weight: 600;
+  font-size: x-small;
+  margin: 0%;
+}
+
+.bestContent {
+  margin-top: 5%;
+  font-weight: 900;
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    justify-content: space-between;
+    max-width: 98%;
+    max-height: 80%;
+    margin-bottom: 0px;
+    margin-top: 60px;
+}
+
+  .header-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #B38445;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .new-game-button {
+    font-size: 0.8em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-left: auto;
+    background-color: #B38445;
+    color: lavender;
+    border: none;
+    cursor: pointer;
+    float: right;
+  }
+
+  .header-content {
+    font-size: 1em;
+    font-weight: bold;
+    color: #B38445;
+    margin-right: auto;
+    text-align: left;
+    margin-top: 0px;
+    margin-left: 2px;
+  }
+
+  .helpIcon {
+    font-size: x-large ;
+    margin: 15px 15px 15px 10px;
+    margin-top: 43px;
+    color: #B38445;
+    cursor: pointer;
+  }
+  
+  .streakContent {
+    margin-top: 10%;
+    font-size: small;
+    font-weight: 900;
+  }
+  
+  .bestContent {
+    margin-top: 10%;
+    font-size: small;
+    font-weight: 900;
+  }
 }
