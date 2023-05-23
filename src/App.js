@@ -127,7 +127,7 @@ class App extends Component {
         <div className="author">
           <p className="madeBy">Made with 
           <FontAwesomeIcon style={{ color: 'indianred', marginLeft: "5px", marginRight: "5px" }} icon={faHeart}/>
-           by Ankita Mishra</p>
+           by Ankita</p>
           <MySvg className="mySvg"/>
         </div>
       </div>
