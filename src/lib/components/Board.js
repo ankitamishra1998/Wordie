@@ -59,7 +59,7 @@ class Board extends Component {
 
         const deltaX = x - this.touchStartX;
         const deltaY = y - this.touchStartY;
-        const sensitivity = 50;
+        const sensitivity = 150;
 
         let cur_x = this.state.position.x;
         let cur_y = this.state.position.y;
