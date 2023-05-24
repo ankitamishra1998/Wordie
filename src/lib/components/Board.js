@@ -30,27 +30,27 @@ class Board extends Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyDown);
-        document.addEventListener('touchstart', this.handleTouchStart);
-        document.addEventListener('touchend', this.handleTouchEnd);
+        // document.addEventListener('touchstart', this.handleTouchStart);
+        // document.addEventListener('touchend', this.handleTouchEnd);
         document.addEventListener('touchmove', this.handleTouchMove);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyDown);
-        document.removeEventListener('touchstart', this.handleTouchStart);
-        document.removeEventListener('touchend', this.handleTouchEnd);
+        // document.removeEventListener('touchstart', this.handleTouchStart);
+        // document.removeEventListener('touchend', this.handleTouchEnd);
         document.removeEventListener('touchmove', this.handleTouchMove);
     }
 
-    handleTouchStart = (event) => {
-        this.touchStartX = event.touches[0].clientX;
-        this.touchStartY = event.touches[0].clientY;
-        this.setState({ direction: '' });
-    };
+    // handleTouchStart = (event) => {
+    //     this.touchStartX = event.touches[0].clientX;
+    //     this.touchStartY = event.touches[0].clientY;
+    //     this.setState({ direction: '' });
+    // };
     
-    handleTouchEnd = () => {
-        this.setState({ direction: '' });
-    };
+    // handleTouchEnd = () => {
+    //     this.setState({ direction: '' });
+    // };
 
     handleTouchMove = (event) => {
         const touch = event.touches[0];
