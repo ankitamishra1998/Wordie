@@ -1,7 +1,6 @@
 .app-container {
   width: 100%;
-  height: 100vh; /* Adjust the height as needed */
-  /* Add any additional styles as necessary */
+  height: 100vh;
 }
 
 .page {

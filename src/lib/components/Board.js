@@ -21,16 +21,60 @@ class Board extends Component {
             },
             isFoundBomb: false,
             isGameWon: false,
+            direction: '',
         };
+
+        this.touchStartX = 0;
+        this.touchStartY = 0;
     }
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyDown);
+        document.addEventListener('touchstart', this.handleTouchStart);
+        document.addEventListener('touchend', this.handleTouchEnd);
+        document.addEventListener('touchmove', this.handleTouchMove);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyDown);
+        document.removeEventListener('touchstart', this.handleTouchStart);
+        document.removeEventListener('touchend', this.handleTouchEnd);
+        document.removeEventListener('touchmove', this.handleTouchMove);
     }
+
+    handleTouchStart = (event) => {
+        this.touchStartX = event.touches[0].clientX;
+        this.touchStartY = event.touches[0].clientY;
+        this.setState({ direction: '' });
+    };
+    
+    handleTouchEnd = () => {
+        this.setState({ direction: '' });
+    };
+
+    handleTouchMove = (event) => {
+        const touch = event.touches[0];
+        const x = touch.clientX;
+        const y = touch.clientY;
+
+        const deltaX = x - this.touchStartX;
+        const deltaY = y - this.touchStartY;
+        const sensitivity = 50;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX > sensitivity) {
+            this.setState({ direction: 'right' });
+            } else if (deltaX < -sensitivity) {
+            this.setState({ direction: 'left' });
+            }
+        } else {
+            if (deltaY > sensitivity) {
+            this.setState({ direction: 'down' });
+            } else if (deltaY < -sensitivity) {
+            this.setState({ direction: 'up' });
+            }
+        }
+    };
 
     rerender = () => {
         this.resetBoard();
@@ -78,6 +122,7 @@ class Board extends Component {
             },
             isFoundBomb: false,
             isGameWon: false,
+            direction: '',
         });
     }
 
@@ -215,8 +260,10 @@ class Board extends Component {
     };
 
     render() {
+        const { direction } = this.state;
         return (
-            <div>
+            <div style={{ touchAction: 'none' }}>
+                <p>Direction: {direction}</p>
                 {this.state.isFoundBomb && <Modal title={"Game over!"} buttonText={"Try again"} resetGame={this.props.resetGame} />}
                 {this.state.isGameWon && <Modal title={"Congratulations!"} buttonText={"Play again"} resetGame={this.props.resetGame} isGameWon={this.state.isGameWon} word={this.props.word}/>}
                 <div className="board-container" onKeyDown={this.handleKeyDown}>
