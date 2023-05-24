@@ -21,7 +21,7 @@ class Board extends Component {
             },
             isFoundBomb: false,
             isGameWon: false,
-            direction: '',
+            // direction: '',
         };
 
         this.touchStartX = 0;
@@ -43,15 +43,13 @@ class Board extends Component {
     }
 
     handleTouchStart = (event) => {
-        // this.touchStartX = event.touches[0].clientX;
-        // this.touchStartY = event.touches[0].clientY;
-        this.touchStartX = this.state.position.x;
-        this.touchStartY = this.state.position.y;
-        this.setState({ direction: '' });
+        this.touchStartX = event.touches[0].clientX;
+        this.touchStartY = event.touches[0].clientY;
+        // this.setState({ direction: '' });
     };
     
     handleTouchEnd = () => {
-        this.setState({ direction: '' });
+        // this.setState({ direction: '' });
     };
 
     checkIfWithinTouchableArea = (x, y) => {
@@ -87,21 +85,21 @@ class Board extends Component {
 
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 if (deltaX > sensitivity) {
-                    this.setState({ direction: 'right' });
+                    // this.setState({ direction: 'right' });
                     new_x = cur_x;
                     new_y = cur_y + 1;
                 } else if (deltaX < -sensitivity) {
-                    this.setState({ direction: 'left' });
+                    // this.setState({ direction: 'left' });
                     new_x = cur_x;
                     new_y = cur_y - 1;
                 }
             } else {
                 if (deltaY > sensitivity) {
-                    this.setState({ direction: 'down' });
+                    // this.setState({ direction: 'down' });
                     new_x = cur_x + 1;
                     new_y = cur_y;
                 } else if (deltaY < -sensitivity) {
-                    this.setState({ direction: 'up' });
+                    // this.setState({ direction: 'up' });
                     new_x = cur_x - 1;
                     new_y = cur_y;
                 }
@@ -157,7 +155,7 @@ class Board extends Component {
             },
             isFoundBomb: false,
             isGameWon: false,
-            direction: '',
+            // direction: '',
         });
     }
 
