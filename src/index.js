@@ -1,14 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import './App.css';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
+
+import ReactDOM from 'react-dom';
+
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+ReactDOM.render(
+  <div className="app-container">
     <App />
-  </React.StrictMode>
+  </div>,
+  document.getElementById('root')
 );
 
 document.title = "Wordie";
