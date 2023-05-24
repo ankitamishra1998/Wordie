@@ -43,6 +43,8 @@ class Board extends Component {
     }
 
     handleTouchStart = (event) => {
+        // this.touchStartX = event.touches[0].clientX;
+        // this.touchStartY = event.touches[0].clientY;
         this.touchStartX = this.state.position.x;
         this.touchStartY = this.state.position.y;
         this.setState({ direction: '' });
@@ -52,43 +54,61 @@ class Board extends Component {
         this.setState({ direction: '' });
     };
 
+    checkIfWithinTouchableArea = (x, y) => {
+        const touchableAreaElement = document.getElementById('board');
+        if (touchableAreaElement) {
+          const { top, left, width, height } = touchableAreaElement.getBoundingClientRect();
+          return (
+            x >= left &&
+            x <= left + width &&
+            y >= top &&
+            y <= top + height
+          );
+        }
+        return false;
+    };
+
     handleTouchMove = (event) => {
         const touch = event.touches[0];
         const x = touch.clientX;
         const y = touch.clientY;
 
-        const deltaX = x - this.touchStartX;
-        const deltaY = y - this.touchStartY;
-        const sensitivity = 150;
+        const isWithinTouchableArea = this.checkIfWithinTouchableArea(x, y);
 
-        let cur_x = this.state.position.x;
-        let cur_y = this.state.position.y;
-        let new_x = 0;
-        let new_y = 0;
+        if (isWithinTouchableArea) {
+            const deltaX = x - this.touchStartX;
+            const deltaY = y - this.touchStartY;
+            const sensitivity = 150;
 
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            if (deltaX > sensitivity) {
-                this.setState({ direction: 'right' });
-                new_x = cur_x;
-                new_y = cur_y + 1;
-            } else if (deltaX < -sensitivity) {
-                this.setState({ direction: 'left' });
-                new_x = cur_x;
-                new_y = cur_y - 1;
+            let cur_x = this.state.position.x;
+            let cur_y = this.state.position.y;
+            let new_x = 0;
+            let new_y = 0;
+
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                if (deltaX > sensitivity) {
+                    this.setState({ direction: 'right' });
+                    new_x = cur_x;
+                    new_y = cur_y + 1;
+                } else if (deltaX < -sensitivity) {
+                    this.setState({ direction: 'left' });
+                    new_x = cur_x;
+                    new_y = cur_y - 1;
+                }
+            } else {
+                if (deltaY > sensitivity) {
+                    this.setState({ direction: 'down' });
+                    new_x = cur_x + 1;
+                    new_y = cur_y;
+                } else if (deltaY < -sensitivity) {
+                    this.setState({ direction: 'up' });
+                    new_x = cur_x - 1;
+                    new_y = cur_y;
+                }
             }
-        } else {
-            if (deltaY > sensitivity) {
-                this.setState({ direction: 'down' });
-                new_x = cur_x + 1;
-                new_y = cur_y;
-            } else if (deltaY < -sensitivity) {
-                this.setState({ direction: 'up' });
-                new_x = cur_x - 1;
-                new_y = cur_y;
-            }
+
+            this.updateBoard(new_x, new_y);
         }
-
-        this.updateBoard(new_x, new_y);
     };
 
     rerender = () => {
@@ -283,7 +303,7 @@ class Board extends Component {
             <div style={{ touchAction: 'none' }}>
                 {this.state.isFoundBomb && <Modal title={"Game over!"} buttonText={"Try again"} resetGame={this.props.resetGame} />}
                 {this.state.isGameWon && <Modal title={"Congratulations!"} buttonText={"Play again"} resetGame={this.props.resetGame} isGameWon={this.state.isGameWon} word={this.props.word}/>}
-                <div className="board-container" onKeyDown={this.handleKeyDown}>
+                <div className="board-container" id="board" onKeyDown={this.handleKeyDown}>
                     {
                         this.state.boardState.map((row, i) =>
                             row.map((item, j) =>
