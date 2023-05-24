@@ -43,8 +43,8 @@ class Board extends Component {
     }
 
     handleTouchStart = (event) => {
-        // this.touchStartX = event.touches[0].clientX;
-        // this.touchStartY = event.touches[0].clientY;
+        this.touchStartX = event.touches[0].clientX;
+        this.touchStartY = event.touches[0].clientY;
         this.setState({ direction: '' });
     };
     
