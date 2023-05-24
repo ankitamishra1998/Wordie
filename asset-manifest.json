@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Wordie/static/css/main.f33d4b76.css",
-    "main.js": "/Wordie/static/js/main.6eb4b077.js",
+    "main.css": "/Wordie/static/css/main.aaf08b23.css",
+    "main.js": "/Wordie/static/js/main.2b006e3c.js",
     "static/js/787.a004cfd3.chunk.js": "/Wordie/static/js/787.a004cfd3.chunk.js",
     "static/media/ankita.svg": "/Wordie/static/media/ankita.8409bea697859520110bcb345964de79.svg",
     "index.html": "/Wordie/index.html",
-    "main.f33d4b76.css.map": "/Wordie/static/css/main.f33d4b76.css.map",
-    "main.6eb4b077.js.map": "/Wordie/static/js/main.6eb4b077.js.map",
+    "main.aaf08b23.css.map": "/Wordie/static/css/main.aaf08b23.css.map",
+    "main.2b006e3c.js.map": "/Wordie/static/js/main.2b006e3c.js.map",
     "787.a004cfd3.chunk.js.map": "/Wordie/static/js/787.a004cfd3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f33d4b76.css",
-    "static/js/main.6eb4b077.js"
+    "static/css/main.aaf08b23.css",
+    "static/js/main.2b006e3c.js"
   ]
 }
